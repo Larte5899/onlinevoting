@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" id="site-root">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FAQ — LAINNOV Voting</title>
+  <meta name="description" content="Frequently asked questions about LAINNOV Voting." />
+  <link rel="icon" href="assets/img/logo.png" type="image/png" sizes="32x32" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+
+ <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top border-bottom border-secondary">
+  <div class="container">
+    <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+      <img src="assets/img/logo.png" alt="LAINNOV" width="28" height="28" />
+      <span class="fw-semibold">LAINNOV Voting</span>
+    </a>
+
+    <button class="navbar-toggler" type="button"
+            data-bs-toggle="collapse" data-bs-target="#navMain"
+            aria-controls="navMain" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navMain">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center">
+        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="online/index.html">Online Voting</a></li>
+        <li class="nav-item"><a class="nav-link" href="results.html">Results</a></li>
+        <li class="nav-item"><a class="nav-link" href="faq.html">FAQ</a></li>
+        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+        <li class="nav-item ms-lg-3">
+          <a class="btn btn-success btn-sm px-3" href="index.html#sim">Try USSD Demo</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+  <section class="py-5">
+    <div class="container">
+      <h1 class="h3 mb-4">Frequently Asked Questions</h1>
+
+      <div class="accordion" id="faqAcc">
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button" data-bs-toggle="collapse" data-bs-target="#q1">How do voters use USSD?</button>
+          </h2>
+          <div id="q1" class="accordion-collapse collapse show" data-bs-parent="#faqAcc">
+            <div class="accordion-body">They dial the short code (e.g., <code>*928*303#</code>), enter the nominee code, choose number of votes, and confirm. No internet required.</div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#q2">How do we prevent duplicate votes?</button>
+          </h2>
+          <div id="q2" class="accordion-collapse collapse" data-bs-parent="#faqAcc">
+            <div class="accordion-body">We combine input validation, rate limiting, and anomaly detection. For online, we can include device or OTP verification. For USSD, SIM/MSISDN checks help.</div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#q3">Can results be exported?</button>
+          </h2>
+          <div id="q3" class="accordion-collapse collapse" data-bs-parent="#faqAcc">
+            <div class="accordion-body">Yes. Admins can export CSVs and view audit logs. Public pages can show aggregate results without exposing sensitive details.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="py-4 bg-dark text-white-50 border-top border-secondary">
+    <div class="container d-flex flex-column flex-sm-row align-items-center justify-content-between gap-2">
+      <div>© <span id="year"></span> LAINNOV Consult — Voting Platform</div>
+      <div class="small"><a class="link-light link-underline-opacity-0" href="contact.html">Need help?</a></div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en" id="site-root">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Results — LAINNOV Voting</title>
+  <meta name="description" content="Live results from the LAINNOV Voting database." />
+  <link rel="icon" href="assets/img/logo.png" type="image/png" sizes="32x32" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top border-bottom border-secondary" data-bs-theme="dark">
+  <div class="container">
+    <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+      <img src="assets/img/logo.png" alt="LAINNOV" width="28" height="28" />
+      <span class="fw-semibold">LAINNOV Voting</span>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMain" aria-controls="navMain" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMain">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center">
+        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="online/index.html">Online Voting</a></li>
+        <li class="nav-item"><a class="nav-link active" href="results.html">Results</a></li>
+        <li class="nav-item"><a class="nav-link" href="faq.html">FAQ</a></li>
+        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+        <li class="nav-item ms-lg-3">
+          <a class="btn btn-success btn-sm px-3" href="index.html#pillars">Try USSD Demo</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<section class="py-5">
+  <div class="container">
+    <div class="d-flex flex-wrap align-items-end justify-content-between gap-3 mb-3">
+      <div>
+        <h1 class="h3 m-0">Live Results</h1>
+        <p class="text-muted m-0">Totals update as votes are recorded.</p>
+      </div>
+      <div class="text-muted small" aria-live="polite">
+        <i class="bi bi-clock"></i>
+        <span>Last updated: </span><span id="lastUpdated">—</span>
+      </div>
+    </div>
+
+    <!-- KPIs + Controls -->
+    <div class="row g-3 align-items-stretch mb-4">
+      <div class="col-md-4">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body">
+            <div class="d-flex align-items-center justify-content-between">
+              <div>
+                <div class="text-muted small">Total Votes</div>
+                <div class="h4 m-0" id="kpiVotes">0</div>
+              </div>
+              <i class="bi bi-graph-up-arrow fs-3 text-success" aria-hidden="true"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body">
+            <div class="d-flex align-items-center justify-content-between">
+              <div>
+                <div class="text-muted small">Nominees</div>
+                <div class="h4 m-0" id="kpiNominees">0</div>
+              </div>
+              <i class="bi bi-people fs-3 text-primary" aria-hidden="true"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body">
+            <div class="row g-2">
+              <div class="col-12">
+                <div class="input-group">
+                  <span class="input-group-text"><i class="bi bi-search"></i></span>
+                  <input type="search" class="form-control" id="filterInput" placeholder="Search by code or name…" />
+                </div>
+              </div>
+              <div class="col-6 d-grid">
+                <button class="btn btn-outline-secondary" id="refreshBtn">
+                  <i class="bi bi-arrow-clockwise me-1"></i>Refresh
+                </button>
+              </div>
+              <div class="col-6 d-grid">
+                <button class="btn btn-outline-dark" id="autoBtn" data-on="0">
+                  <i class="bi bi-play-circle me-1"></i>Auto 30s
+                </button>
+              </div>
+              <div class="col-12 d-grid">
+                <button class="btn btn-success" id="csvBtn">
+                  <i class="bi bi-download me-1"></i>Download CSV
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Table -->
+    <div class="table-responsive shadow-sm">
+      <table class="table align-middle">
+        <thead class="table-light">
+          <tr>
+            <th style="width:80px">Rank</th>
+            <th style="min-width:160px">Nominee Code</th>
+            <th>Nominee Name</th>
+            <th class="text-end" style="width:160px">Votes</th>
+          </tr>
+        </thead>
+        <tbody id="resultsBody">
+          <tr><td colspan="4" class="text-center text-muted">Loading…</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div id="errorBox" class="alert alert-danger mt-3 d-none" role="alert">
+      Couldn’t load results. Try refresh.
+    </div>
+  </div>
+</section>
+
+<footer class="py-4 bg-dark text-white-50 border-top border-secondary">
+  <div class="container d-flex flex-column flex-sm-row align-items-center justify-content-between gap-2">
+    <div>© <span id="year"></span> LAINNOV Consult — Voting Platform</div>
+    <div class="small"><a class="link-light link-underline-opacity-0" href="contact.html">Need help?</a></div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  (function(){ var y=document.getElementById('year'); if(y) y.textContent=new Date().getFullYear(); })();
+
+  const API_URL = 'api/results.php';
+  let ALL_ROWS = [];
+  let autoTimer = null;
+
+  const $ = (s,p=document)=>p.querySelector(s);
+  const resultsBody = $('#resultsBody');
+  const kpiVotes = $('#kpiVotes');
+  const kpiNominees = $('#kpiNominees');
+  const lastUpdated = $('#lastUpdated');
+  const errorBox = $('#errorBox');
+  const filterInput = $('#filterInput');
+  const refreshBtn = $('#refreshBtn');
+  const autoBtn = $('#autoBtn');
+  const csvBtn = $('#csvBtn');
+
+  refreshBtn.addEventListener('click', loadResults);
+  filterInput.addEventListener('input', renderFiltered);
+  csvBtn.addEventListener('click', downloadCSV);
+  autoBtn.addEventListener('click', toggleAuto);
+
+  function toggleAuto(){
+    const on = autoBtn.getAttribute('data-on') === '1';
+    if (on){
+      clearInterval(autoTimer); autoTimer=null;
+      autoBtn.setAttribute('data-on','0');
+      autoBtn.innerHTML = '<i class="bi bi-play-circle me-1"></i>Auto 30s';
+    } else {
+      autoTimer = setInterval(loadResults, 30000);
+      autoBtn.setAttribute('data-on','1');
+      autoBtn.innerHTML = '<i class="bi bi-pause-circle me-1"></i>Auto ON';
+      loadResults();
+    }
+  }
+
+  async function loadResults(){
+    try{
+      errorBox.classList.add('d-none');
+      resultsBody.innerHTML = '<tr><td colspan="4" class="text-center text-muted">Loading…</td></tr>';
+      const res = await fetch(API_URL, { cache:'no-store' });
+      const j = await res.json();
+      const rows = Array.isArray(j.data) ? j.data : [];
+      ALL_ROWS = rows.map(r => ({
+        code: String(r.code||'').toUpperCase(),
+        name: r.name || '',
+        votes: Number(r.votes||0)
+      })).sort((a,b)=> b.votes - a.votes || a.code.localeCompare(b.code));
+
+      const totalVotes = ALL_ROWS.reduce((s,r)=>s + (r.votes||0), 0);
+      kpiVotes.textContent = totalVotes.toLocaleString();
+      kpiNominees.textContent = ALL_ROWS.length.toLocaleString();
+      lastUpdated.textContent = new Date().toLocaleString();
+
+      renderFiltered();
+    }catch(e){
+      resultsBody.innerHTML = '<tr><td colspan="4" class="text-center text-danger">Failed to load</td></tr>';
+      errorBox.classList.remove('d-none');
+    }
+  }
+
+  function renderFiltered(){
+    const q = (filterInput.value || '').trim().toLowerCase();
+    const list = !q ? ALL_ROWS : ALL_ROWS.filter(r =>
+      r.code.toLowerCase().includes(q) || r.name.toLowerCase().includes(q)
+    );
+    if (!list.length){
+      resultsBody.innerHTML = '<tr><td colspan="4" class="text-center text-muted">No matches</td></tr>';
+      return;
+    }
+    resultsBody.innerHTML = list.map((r,idx) => `
+      <tr>
+        <td>${idx+1}</td>
+        <td><code>${r.code}</code></td>
+        <td>${escapeHtml(r.name)}</td>
+        <td class="text-end">${Number(r.votes).toLocaleString()}</td>
+      </tr>
+    `).join('');
+  }
+
+  function downloadCSV(){
+    const header = ['rank','code','name','votes'];
+    const rows = (ALL_ROWS.length ? ALL_ROWS : []).map((r,i)=>[i+1, r.code, r.name, r.votes]);
+    const csv = [header, ...rows].map(cols => cols.map(csvEscape).join(',')).join('\n');
+    const blob = new Blob([csv], {type:'text/csv;charset=utf-8;'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url; a.download = 'lainnov-results.csv';
+    document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+  }
+
+  function csvEscape(v){
+    const s = String(v==null?'':v);
+    return /[",\n]/.test(s) ? '"' + s.replace(/"/g,'""') + '"' : s;
+  }
+  function escapeHtml(s){
+    return String(s).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+  }
+
+  loadResults();
+</script>
+</body>
+</html>
