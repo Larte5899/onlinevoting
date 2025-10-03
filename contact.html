@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" id="site-root">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact — LAINNOV Voting</title>
+  <meta name="description" content="Contact LAINNOV Consult for your voting project." />
+  <link rel="icon" href="assets/img/logo.png" type="image/png" sizes="32x32" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top border-bottom border-secondary" data-bs-theme="dark">
+  <div class="container">
+    <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+      <img src="assets/img/logo.png" alt="LAINNOV" width="28" height="28" />
+      <span class="fw-semibold">LAINNOV Voting</span>
+    </a>
+
+    <button class="navbar-toggler" type="button"
+            data-bs-toggle="collapse" data-bs-target="#navMain"
+            aria-controls="navMain" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navMain">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center">
+        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="online/index.html">Online Voting</a></li>
+        <li class="nav-item"><a class="nav-link" href="results.html">Results</a></li>
+        <li class="nav-item"><a class="nav-link" href="faq.html">FAQ</a></li>
+        <li class="nav-item"><a class="nav-link active" href="contact.html">Contact</a></li>
+        <li class="nav-item ms-lg-3">
+          <a class="btn btn-success btn-sm px-3" href="index.html#pillars">Try USSD Demo</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<section class="py-5">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-lg-6">
+        <h1 class="h3 mb-3">Talk to us</h1>
+        <p class="text-muted">We’ll help with menu design, validation rules, payments, and reporting.</p>
+
+        <form class="card shadow-sm" action="contact.php" method="post">
+          <div class="card-body">
+            <!-- Honeypot -->
+            <input type="text" name="company" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true">
+            <div class="mb-3">
+              <label class="form-label">Your name</label>
+              <input class="form-control" name="name" required placeholder="Enter your name" title="Your name" />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Email</label>
+              <input class="form-control" type="email" name="email" required title="Your email address" placeholder="Enter your email" />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Message</label>
+              <textarea class="form-control" name="message" rows="4" required title="Your message" placeholder="Tell us about the event, dates, and channels (USSD/Web)."></textarea>
+            </div>
+            <div class="d-grid">
+              <button class="btn btn-success" type="submit">Send</button>
+            </div>
+            <div class="small text-muted mt-2">Or email <a href="mailto:hello@example.com">hello@example.com</a></div>
+          </div>
+        </form>
+      </div>
+
+      <div class="col-lg-6">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h2 class="h5">Quick checklist</h2>
+            <ul class="m-0 ps-3 small lh-lg">
+              <li>Short code active on Arkesel</li>
+              <li>Live PHP endpoint deployed</li>
+              <li>Session states & input validation covered</li>
+              <li>Logging & analytics connected</li>
+            </ul>
+            <hr>
+            <h6 class="fw-semibold">Office</h6>
+            <div class="text-muted small">Accra, Ghana</div>
+          </div>
+        </div>
+      </div>
+    </div>      
+  </div>
+</section>
+
+<footer class="py-4 bg-dark text-white-50 border-top border-secondary">
+  <div class="container d-flex flex-column flex-sm-row align-items-center justify-content-between gap-2">
+    <div>© <span id="year"></span> LAINNOV Consult — Voting Platform</div>
+    <div class="small"><a class="link-light link-underline-opacity-0" href="privacy.html">Privacy</a></div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>

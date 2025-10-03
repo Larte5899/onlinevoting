@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en" id="site-root">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light dark" />
+  <title>LAINNOV Voting — Secure Online & USSD Voting</title>
+  <meta name="description" content="A secure, scalable voting platform by LAINNOV Consult — online web voting and offline USSD voting, built for real-world elections." />
+  <meta name="theme-color" content="#0b1220" />
+  <meta name="msapplication-navbutton-color" content="#0b1220" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="#0b1220" />
+  <link rel="icon" href="assets/img/logo.png" type="image/png" sizes="32x32" />
+  <link rel="apple-touch-icon" href="assets/img/logo.png" />
+  <meta property="og:title" content="LAINNOV Voting — Secure Online & USSD Voting" />
+  <meta property="og:description" content="Vote anywhere: web or USSD. Secure, fast, auditable." />
+  <meta property="og:image" content="assets/img/og-cover.jpg" />
+  <meta property="og:type" content="website" />
+  <link rel="preload" as="image" href="assets/img/og-cover.jpg" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <style>
+    @media (prefers-color-scheme: dark) { body { background-color: #0b1220; } }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top border-bottom border-secondary" data-bs-theme="dark">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+        <img src="assets/img/logo.png" alt="LAINNOV" width="28" height="28" />
+        <span class="fw-semibold">LAINNOV Voting</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMain" aria-controls="navMain" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navMain">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center">
+          <li class="nav-item"><a class="nav-link" href="#about">Platform</a></li>
+          <li class="nav-item"><a class="nav-link" href="#pillars">Ways to Vote</a></li>
+          <li class="nav-item"><a class="nav-link" href="#security">Security</a></li>
+          <li class="nav-item"><a class="nav-link" href="ussd.html">USSD Demo</a></li>
+          <li class="nav-item"><a class="nav-link" href="results.html">Results</a></li>
+          <li class="nav-item"><a class="nav-link" href="faq.html">FAQ</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+          <li class="nav-item ms-lg-3">
+            <a class="btn btn-success btn-sm px-3" href="online/index.html">Launch Online Voting</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Header Carousel -->
+  <header id="hero" class="bg-dark">
+    <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" aria-label="Highlights">
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active" aria-label="Secure platform"></button>
+        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1" aria-label="USSD voting"></button>
+        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2" aria-label="Online voting"></button>
+      </div>
+
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <div class="hero-slide" style="--bg-img:url('assets/img/og-cover.jpg')">
+            <div class="container">
+              <div class="hero-content">
+                <span class="badge bg-success-subtle text-success-emphasis mb-3"><i class="bi bi-shield-lock"></i> Secure by Design</span>
+                <h1 class="display-5 fw-bold text-white">One platform for online & USSD voting</h1>
+                <p class="lead text-white-50">Auditable, reliable, and fast — built for real people and real elections.</p>
+                <div class="d-flex flex-wrap gap-2 mt-3">
+                  <a class="btn btn-success" href="online/index.html"><i class="bi bi-globe2 me-1"></i> Online Portal</a>
+                  <a class="btn btn-outline-light" href="ussd.html"><i class="bi bi-phone me-1"></i> Try USSD Demo</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="carousel-item">
+          <div class="hero-slide" style="--bg-img:url('assets/img/og-cover.jpg')">
+            <div class="container">
+              <div class="hero-content">
+                <span class="badge bg-light text-dark mb-3"><i class="bi bi-broadcast"></i> Offline first</span>
+                <h2 class="fw-bold text-white">USSD Voting — no data needed</h2>
+                <p class="text-white-50 m-0">Dial, enter nominee code, choose votes, confirm payment. Done.</p>
+                <div class="d-flex align-items-center gap-3 mt-3">
+                  <div class="ussd-code shadow-sm">
+                    <code id="ussdCodeText" class="fw-semibold">*928*303#</code>
+                    <button class="btn btn-outline-light btn-sm" id="copyCodeBtn" aria-label="Copy USSD code"><i class="bi bi-clipboard"></i></button>
+                  </div>
+                  <a class="btn btn-outline-light" href="ussd.html">Open Simulator</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="carousel-item">
+          <div class="hero-slide" style="--bg-img:url('assets/img/og-cover.jpg')">
+            <div class="container">
+              <div class="hero-content">
+                <span class="badge bg-primary-subtle text-primary-emphasis mb-3"><i class="bi bi-display"></i> Web experience</span>
+                <h2 class="fw-bold text-white">Modern, responsive online voting</h2>
+                <p class="text-white-50 m-0">Clean UI, device verification, receipts, and admin controls.</p>
+                <div class="d-flex gap-2 mt-3">
+                  <a class="btn btn-success" href="online/index.html">Enter Portal</a>
+                  <a class="btn btn-outline-light" href="#about">See features</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Prev</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- About -->
+  <section id="about" class="py-5 bg-body">
+    <div class="container">
+      <div class="row g-4 align-items-center">
+        <div class="col-lg-6">
+          <h2 class="fw-bold">Secure voting platform by LAINNOV Consult</h2>
+          <p class="text-muted">We blend offline USSD and online web voting into one auditable system. Voters choose the channel; you keep one source of truth with exports, logs, and fraud controls.</p>
+          <ul class="list-unstyled small lh-lg m-0">
+            <li><i class="bi bi-check-circle text-success me-2"></i> End-to-end logs & receipts</li>
+            <li><i class="bi bi-check-circle text-success me-2"></i> Input validation & rate-limits</li>
+            <li><i class="bi bi-check-circle text-success me-2"></i> Tamper flags & anomaly alerts</li>
+          </ul>
+        </div>
+        <div class="col-lg-6">
+          <div class="card border-0 shadow-sm">
+            <div class="card-body">
+              <div class="d-flex align-items-center gap-3">
+                <div class="icon-wrap-lg"><i class="bi bi-speedometer2"></i></div>
+                <div>
+                  <div class="fw-semibold">Designed for scale</div>
+                  <div class="text-muted small">Stateless USSD sessions + optimized web endpoints.</div>
+                </div>
+              </div>
+              <hr>
+              <div class="d-flex align-items-center gap-3">
+                <div class="icon-wrap-lg"><i class="bi bi-shield-check"></i></div>
+                <div>
+                  <div class="fw-semibold">Security-first</div>
+                  <div class="text-muted small">Least-privilege keys, strict validation, audit trails.</div>
+                </div>
+              </div>
+              <hr>
+              <div class="d-flex align-items-center gap-3">
+                <div class="icon-wrap-lg"><i class="bi bi-graph-up"></i></div>
+                <div>
+                  <div class="fw-semibold">Actionable analytics</div>
+                  <div class="text-muted small">Real-time dashboards, CSV exports, and summaries.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>    
+    </div>
+  </section>
+
+  <!-- Two Pillars -->
+  <section id="pillars" class="py-5">
+    <div class="container">
+      <div class="text-center mb-4">
+        <h2 class="fw-semibold">Two ways to vote. One platform.</h2>
+        <p class="text-muted">Meet voters where they are—web or basic phone.</p>
+      </div>
+      <div class="row g-4">
+        <div class="col-lg-6">
+          <div class="card h-100 shadow-sm">
+            <div class="card-body">
+              <div class="d-flex align-items-center justify-content-between mb-2">
+                <h5 class="m-0">USSD (Offline)</h5>
+                <span class="badge bg-dark-subtle text-dark-emphasis"><i class="bi bi-broadcast"></i> No data needed</span>
+              </div>
+              <p class="text-muted">Dial, enter nominee code, choose votes, confirm payment.</p>
+              <div class="d-flex align-items-center gap-2 mb-3">
+                <div class="ussd-code"><code id="ussdCodeTextPillars" class="fw-semibold">*928*303#</code></div>
+                <button class="btn btn-outline-secondary btn-sm" id="copyCodeBtn2" aria-label="Copy USSD code"><i class="bi bi-clipboard"></i> Copy</button>
+              </div>
+              <a class="btn btn-success" href="ussd.html"><i class="bi bi-phone me-1"></i> Try USSD Demo</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="card h-100 shadow-sm">
+            <div class="card-body">
+              <div class="d-flex align-items-center justify-content-between mb-2">
+                <h5 class="m-0">Online (Web)</h5>
+                <span class="badge bg-primary-subtle text-primary-emphasis"><i class="bi bi-globe2"></i> Mobile-friendly</span>
+              </div>
+              <p class="text-muted">Clean UI, authentication, receipts, and exportable results.</p>
+              <a class="btn btn-outline-primary" href="online/index.html"><i class="bi bi-box-arrow-right me-1"></i> Open Portal</a>
+            </div>
+          </div>
+        </div>
+      </div>      
+    </div>
+  </section>
+
+  <!-- Security -->
+  <section id="security" class="py-5 bg-light">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-6">
+          <h2 class="fw-semibold">Security that’s not just marketing</h2>
+          <ul class="list-unstyled lh-lg">
+            <li><i class="bi bi-lock-fill text-success me-2"></i> Transport security, strict input validation</li>
+            <li><i class="bi bi-shield-shaded text-success me-2"></i> Role-based admin, action logs, IP tagging</li>
+            <li><i class="bi bi-bug text-success me-2"></i> Fraud checks: duplicate detection, rate limits</li>
+            <li><i class="bi bi-folder2-open text-success me-2"></i> CSV exports + immutable audit records</li>
+          </ul>
+        </div>
+        <div class="col-lg-6">
+          <div class="card border-0 shadow-sm">
+            <div class="card-body">
+              <h6 class="fw-semibold mb-2">Compliance-ready defaults</h6>
+              <p class="text-muted small">We keep sensitive keys off the client, lock down origins, and log all critical operations. Your teams get traceability without the drama.</p>
+              <div class="d-flex flex-wrap gap-2">
+                <span class="badge bg-secondary-subtle text-secondary-emphasis">Principle of Least Privilege</span>
+                <span class="badge bg-secondary-subtle text-secondary-emphasis">Input Sanitization</span>
+                <span class="badge bg-secondary-subtle text-secondary-emphasis">Audit Trails</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>      
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-4 bg-dark text-white-50 border-top border-secondary">
+    <div class="container d-flex flex-column flex-sm-row align-items-center justify-content-between gap-2">
+      <div>© <span id="year"></span> LAINNOV Consult — Voting Platform</div>
+      <div class="small">
+        <a class="link-light link-underline-opacity-0 me-3" href="privacy.html">Privacy</a>
+        <a class="link-light link-underline-opacity-0 me-3" href="terms.html">Terms</a>
+        <a class="link-light link-underline-opacity-0" href="contact.html">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

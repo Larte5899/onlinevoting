@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" id="site-root">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Online Voting — LAINNOV Voting</title>
+  <meta name="description" content="Modern, responsive online voting experience by LAINNOV Consult." />
+  <link rel="icon" href="../assets/img/logo.png" type="image/png" sizes="32x32" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/styles.css" />
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top border-bottom border-secondary" data-bs-theme="dark">
+  <div class="container">
+    <a class="navbar-brand d-flex align-items-center gap-2" href="../index.html">
+      <img src="../assets/img/logo.png" alt="LAINNOV" width="28" height="28" />
+      <span class="fw-semibold">LAINNOV Voting</span>
+    </a>
+
+    <button class="navbar-toggler" type="button"
+            data-bs-toggle="collapse" data-bs-target="#navMain"
+            aria-controls="navMain" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navMain">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center">
+        <li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link active" href="#">Online Voting</a></li>
+        <li class="nav-item"><a class="nav-link" href="../results.html">Results</a></li>
+        <li class="nav-item"><a class="nav-link" href="../faq.html">FAQ</a></li>
+        <li class="nav-item"><a class="nav-link" href="../contact.html">Contact</a></li>
+        <li class="nav-item ms-lg-3">
+          <a class="btn btn-success btn-sm px-3" href="../index.html#pillars">Try USSD Demo</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<section class="py-5 bg-body">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-lg-5">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h1 class="h4 mb-3">Cast Your Vote</h1>
+            <!-- data-price: unit price per vote -->
+            <form id="onlineVoteForm" data-price="0.50" novalidate>
+              <div class="mb-3">
+                <label class="form-label">Voter ID (or Phone)</label>
+                <input type="text" class="form-control" id="voterId" required placeholder="Enter Voter ID or Phone" title="Voter ID or Phone" />
+                <div class="invalid-feedback">Enter your Voter ID or verified phone.</div>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Nominee Code</label>
+                <input type="text" class="form-control" id="nomineeCode" placeholder="e.g., ABC123" required />
+                <div class="form-text">Same code used in USSD.</div>
+                <div class="invalid-feedback">Nominee code is required.</div>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Number of Votes</label>
+                <input type="number" class="form-control" id="votes" min="1" step="1" required title="Number of Votes" placeholder="Enter number of votes" />
+                <div class="invalid-feedback">Enter at least 1 vote.</div>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Total (GHS)</label>
+                <input type="text" class="form-control" id="total" readonly value="0.00" title="Total amount in GHS" placeholder="Total amount in GHS" />
+                <div class="form-text">Calculated at GHS 0.50 per vote.</div>
+              </div>
+              <div class="d-grid">
+                <button class="btn btn-success" type="submit"><i class="bi bi-check2-circle me-1"></i> Review & Pay</button>
+              </div>
+              <div class="small text-muted mt-2">* Payment integration placeholder — connect your PSP here.</div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-7">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h2 class="h5 mb-3">How it works</h2>
+            <ol class="lh-lg">
+              <li>Enter your Voter ID (or verified phone).</li>
+              <li>Input nominee code and number of votes.</li>
+              <li>Total is calculated (GHS 0.50 per vote).</li>
+              <li>Confirm payment → receipt is generated.</li>
+            </ol>
+            <div class="alert alert-secondary small mb-0">
+              This page is a starter template. Wire it to your backend (API) and payment provider.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>      
+  </div>
+</section>
+
+<footer class="py-4 bg-dark text-white-50 border-top border-secondary">
+  <div class="container d-flex flex-column flex-sm-row align-items-center justify-content-between gap-2">
+    <div>© <span id="year"></span> LAINNOV Consult — Voting Platform</div>
+    <div class="small"><a class="link-light link-underline-opacity-0" href="../contact.html">Need help?</a></div>
+  </div>
+</footer>
+
+<!-- Confirm Modal -->
+<div class="modal fade" id="confirmModal" tabindex="-1" aria-hidden="true" aria-labelledby="confirmTitle">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 id="confirmTitle" class="modal-title">Confirm Payment</h5>
+        <button class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" id="confirmBody" aria-live="polite">You are about to pay…</div>
+      <div class="modal-footer">
+        <button class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button class="btn btn-success" id="confirmPayBtn">Pay</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>
