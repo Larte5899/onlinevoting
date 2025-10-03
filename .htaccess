@@ -1,0 +1,19 @@
+# Security headers (adjust if Hostinger overrides)
+<IfModule mod_headers.c>
+ Header set X-Content-Type-Options "nosniff"
+ Header set X-Frame-Options "SAMEORIGIN"
+ Header set Referrer-Policy "strict-origin-when-cross-origin"
+ Header set X-XSS-Protection "0"
+ Header set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+</IfModule>
+
+# Gzip/Brotli may be enabled by host; caching for static assets
+<IfModule mod_expires.c>
+ ExpiresActive On
+ ExpiresByType text/css "access plus 7 days"
+ ExpiresByType application/javascript "access plus 7 days"
+ ExpiresByType image/png "access plus 30 days"
+ ExpiresByType image/jpeg "access plus 30 days"
+</IfModule>
+
+ErrorDocument 404 /404.html
